@@ -13,8 +13,15 @@ int main(void)
   MX_GPIO_Init();
   Wheel_Init();   /* 8 PWM outputs, all 0 % at start */
   UartCmd_Init(); /* USART1 115200: PA9 TX, PA10 RX */
-#if WHEEL_CMD_ENABLED
-  set_wheel(WHEEL_CMD_WHEEL, WHEEL_CMD_DUTY, WHEEL_CMD_DIR); /* command baked in by set_wheel.py */
+#if WHEEL_CMD_COUNT > 0
+  {
+    /* commands baked in by set_wheel.py, all applied together */
+    static const struct { uint8_t wheel; float duty; uint8_t dir; } cmds[] = WHEEL_CMD_LIST;
+    for (unsigned i = 0; i < WHEEL_CMD_COUNT; i++)
+    {
+      set_wheel(cmds[i].wheel, cmds[i].duty, cmds[i].dir);
+    }
+  }
 #endif
 
   while (1)

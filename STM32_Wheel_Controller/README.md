@@ -16,6 +16,7 @@ Forward: IN_A = PWM, IN_B = 0. Backward: IN_A = 0, IN_B = PWM. PWM is 20 kHz.
 
 ## Timeout and LED
 
+Several commands can be baked in at once: `python3 set_wheel.py 0 0.7 1 1 0.7 0 2 0.7 1 3 0.7 0`.
 Every `set_wheel()` works for 3 seconds (`WHEEL_TIMEOUT_MS` in `wheel.h`), then all outputs reset to 0 %.
 PC13 blinks 3 times per second while it is active and 1 time per second after the reset.
 A new `set_wheel()` restarts the 3 seconds. After flashing, the board resets and runs the command for 3 seconds.
@@ -66,4 +67,4 @@ python3 set_wheel.py "set_wheel(0, 0.8, 0)"
 python3 set_wheel.py 0 0.8 0
 
 min real PWM for moving is 0.58
-
+python3 set_wheel.py 0 0.7 1 1 0.7 0
