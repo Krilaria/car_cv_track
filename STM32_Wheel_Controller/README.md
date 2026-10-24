@@ -68,3 +68,4 @@ python3 set_wheel.py 0 0.8 0
 
 min real PWM for moving is 0.58
 python3 set_wheel.py 0 0.7 1 1 0.7 0
+python3 set_wheel.py 0 0.65 0 1 0.65 1 2 0.65 0 3 0.65 1
